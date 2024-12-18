@@ -2,8 +2,28 @@ name: CheckKode
 
 on:
   push:
-    - '**'
-    -
+    - new
 
   pull_request:
+    branches:
+      - new
+
 jobs:
+  checkcode:
+    runs-on: ubuntu:latest
+    steps:
+      - name: Clone reps
+        uses: actions/checkout@v2
+
+      - name: Check python version
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.12.3'
+
+      - name: Install dependencies
+        run:
+          pip install pycodestyle
+
+      - name: run linter
+        run:
+          pycodestyle .
