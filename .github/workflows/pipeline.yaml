@@ -1,0 +1,9 @@
+name: CheckKode
+
+on:
+  push:
+    - '**'
+    -
+
+  pull_request:
+jobs:
